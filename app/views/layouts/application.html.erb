@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MembersOnly</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+      <% if session[:id] == nil && params[:controller]!= 'sessions'%>
+      <%= link_to "Sign in", login_path%>
+      <% elsif session[:id] != nil %>
+      <%= link_to "Sign out", logout_path ,method: 'delete' %>
+      <%= link_to "Create new post", new_post_path%>
+      <% end%>
+      <%= link_to "View Posts", posts_path%>
+    <%= yield %>
+  </body>
+</html>
